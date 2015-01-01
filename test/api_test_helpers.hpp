@@ -8,6 +8,10 @@
 #ifndef BOOST_ATOMIC_API_TEST_HELPERS_HPP
 #define BOOST_ATOMIC_API_TEST_HELPERS_HPP
 
+#if defined(_MSC_VER)
+#pragma warning(disable: 4245 4305 4309 4310 4127) // narrowing and signedness warnings
+#endif
+
 #include <boost/atomic.hpp>
 #include <cstddef>
 #include <cstring>
@@ -1050,4 +1054,7 @@ test_struct_with_ctor_api(void)
     test_base_operators(a, b, c);
 }
 
+#if defined(_MSC_VER)
+#pragma warning(default: 4245 4305 4309 4310) // narrowing and signedness warnings
+#endif
 #endif
