@@ -36,6 +36,11 @@ namespace detail {
 
 namespace {
 
+#if defined (BOOST_MSVC)
+# pragma warning(push)
+# pragma warning(disable: 4324) // structure was padded due to alignment specifier
+#endif
+
 // This seems to be the maximum across all modern CPUs
 // NOTE: This constant is made as a macro because some compilers (gcc 4.4 for one) don't allow enums or namespace scope constants in alignment attributes
 #define BOOST_ATOMIC_CACHE_LINE_SIZE 64
@@ -86,6 +91,10 @@ static padded_lock_t g_lock_pool[41]
 }
 #endif
 ;
+
+#if defined (BOOST_MSVC)
+# pragma warning(pop)
+#endif
 
 } // namespace
 
